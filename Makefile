@@ -9,7 +9,7 @@ osh: main.c
 	gcc main.c -o osh
 
 test_runner: CFLAGS += -DTESTING 
-test_runner: test_cobra.c main.c unity/src/unity.c
+test_runner: test_cobra.c list.c unity/src/unity.c
 	$(CC) $(CFLAGS) $^ -o test_runner
 
 check: test_runner
