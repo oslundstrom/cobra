@@ -55,6 +55,12 @@ int list_ins_next(List *list, ListElmt *element, const void *data) {
 }
 
 int list_rem_next(List *list, ListElmt *element, void **data) {
+	if (data == NULL)
+		return -1;
+	
+	if (list == NULL)
+		return -1;
+	
 	ListElmt *old_element;
 	if (list_size(list) == 0)
 		return -1;
