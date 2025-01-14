@@ -7,3 +7,9 @@ int queue_enqueue(Queue *queue, const void *data) {
 	int result = list_ins_next(queue, NULL, data);
 	return result;
 }
+
+int queue_dequeue(Queue *queue, void **data) {
+	int result = list_rem_next(queue, NULL, data);
+	return result;
+}
+
