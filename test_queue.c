@@ -127,6 +127,27 @@ void test_dequeue_should_maintain_fifo_order(void) {
     queue_destroy(&queue);
 }
 
+void test_dequeue_with_null_parameters_should_fail(void) {
+    // Arrange
+    Queue queue;
+    int data = 42;
+    int *received = NULL;
+    queue_init(&queue, NULL);
+    queue_enqueue(&queue, &data);
+
+    // Act & Assert - NULL queue
+    int result = queue_dequeue(NULL, (void**)&received);
+    TEST_ASSERT_NOT_EQUAL(0, result);  // Expecting failure
+
+    // Act & Assert - NULL data pointer
+    result = queue_dequeue(&queue, NULL);
+    TEST_ASSERT_NOT_EQUAL(0, result);  // Expecting failure
+    TEST_ASSERT_EQUAL_INT(1, queue_size(&queue));  // Queue should be unchanged
+
+    // Cleanup
+    queue_destroy(&queue);
+}
+
 int main(void) {
     UNITY_BEGIN();
     RUN_TEST(test_new_queue_should_be_empty);
@@ -136,6 +157,7 @@ int main(void) {
 	RUN_TEST(test_dequeue_should_remove_and_return_element_from_queue_with_one_element);
 	RUN_TEST(test_dequeue_from_empty_queue_should_fail);
 	RUN_TEST(test_dequeue_should_maintain_fifo_order);
+	RUN_TEST(test_dequeue_with_null_parameters_should_fail);
 
     return UNITY_END();
 }
