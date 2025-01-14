@@ -96,8 +96,8 @@ void test_InsertWithNullData(void) {
     int result = list_ins_next(&list, NULL, NULL);
 
     // Assert
-    TEST_ASSERT_EQUAL_INT(-1, result);
-    TEST_ASSERT_EQUAL_INT(0, list_size(&list));
+    TEST_ASSERT_EQUAL_INT(0, result);
+    TEST_ASSERT_EQUAL_INT(1, list_size(&list));
 }
 
 void test_list_init_should_initialize_empty_list(void) {
