@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 
 #include "list.h"
 
@@ -25,9 +26,13 @@ void list_destroy(List *list) {
 }
 
 int list_ins_next(List *list, ListElmt *element, const void *data) {
+	if (list == NULL)
+		return -1;
+	
 	ListElmt *new_element;
 	if ((new_element = (ListElmt *)malloc(sizeof(ListElmt))) == NULL)
 		return -1;
+
 	new_element->data = (void *)data;
 	if (element == NULL) {
 		// Handle insertion at head
