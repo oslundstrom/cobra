@@ -21,7 +21,7 @@ void test_enqueue_should_increase_size(void) {
     void *data = &value;
     queue_init(&queue, NULL);
 
-    TEST_ASSERT_EQUAL_INT(0, queue_enqueue(&queue, &data));
+    TEST_ASSERT_EQUAL_INT(0, queue_enqueue(&queue, data));
     TEST_ASSERT_EQUAL_INT(1, queue_size(&queue));
 
     queue_destroy(&queue);
@@ -33,7 +33,7 @@ void test_peek_should_return_first_value_enqueued(void) {
 
     int value = 42;
     void *data = &value;
-    queue_enqueue(&queue, &data);
+    queue_enqueue(&queue, data);
 
     void *peeked = queue_peek(&queue);
     TEST_ASSERT_EQUAL_PTR(&value, peeked);
@@ -48,9 +48,8 @@ void test_enqueue_should_store_correct_pointer_level(void) {
 
     int value = 42;
     void *data = &value;      // data points to value
-    void **data_ptr = &data;  // data_ptr points to data
 
-    queue_enqueue(&queue, data_ptr);  // Should store data (0x100), not data_ptr (0x200)
+    queue_enqueue(&queue, data);  // Should store data (0x100), not data_ptr (0x200)
 
     void *peeked = queue_peek(&queue);
 	printf("value returned by peek: %p\n", peeked);
