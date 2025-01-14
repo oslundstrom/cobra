@@ -5,8 +5,8 @@ CFLAGS = -I./unity/src -I. -g
 	
 all: cobra
 
-osh: main.c
-	gcc main.c -o osh
+cobra: main.c
+	gcc main.c -o $@
 
 test_runner: CFLAGS += -DTESTING 
 test_runner: test_cobra.c list.c unity/src/unity.c
