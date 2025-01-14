@@ -42,7 +42,7 @@ void test_InsertIntoEmptyList(void) {
     TEST_ASSERT_EQUAL_INT(1, list_size(&list));
     TEST_ASSERT_NOT_NULL(list_head(&list));
     TEST_ASSERT_NOT_NULL(list_tail(&list));
-    TEST_ASSERT_TRUE(list_head(&list) != list_tail(&list));
+    TEST_ASSERT_TRUE(list_head(&list) == list_tail(&list));
     TEST_ASSERT_EQUAL_STRING("first", (char*)list_data(list_head(&list)));
 }
 
@@ -108,7 +108,7 @@ void test_list_init_should_initialize_empty_list(void) {
     TEST_ASSERT_EQUAL_INT(0, list.size);
     TEST_ASSERT_NULL(list.head);
     TEST_ASSERT_NULL(list.tail);
-    TEST_ASSERT_TRUE(test_destroy != list.destroy);
+    TEST_ASSERT_TRUE(test_destroy == list.destroy);
     TEST_ASSERT_NULL(list.match);
 }
 
