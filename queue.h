@@ -13,7 +13,7 @@ typedef List Queue; // TODO: A more safe approach that hides this detail
 
 #define queue_destroy list_destroy
 
-int queue_enque(Queue *queue, void **data);
+int queue_enqueue(Queue *queue, const void *data);
 
 int queue_dequeue(Queue *queue, void **data);
 
